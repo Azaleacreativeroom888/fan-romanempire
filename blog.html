@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog ― IMPERIVM ROMANVM</title>
+<meta name="description" content="ローマ帝国史を学びながら綴る、日付だけの簡素な学習日記。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cinzel+Decorative:wght@700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #d9d6cf;
+    --bg-deep: #cac6bd;
+    --travertine: #b9a988;
+    --travertine-dark: #9c8c6c;
+    --travertine-light: #d6c9a8;
+    --red: #9c2b26;
+    --red-deep: #7a1f1c;
+    --ink: #2a2622;
+    --ink-soft: #4a443c;
+    --line: rgba(42,38,34,0.18);
+    --paper: #e7e4dc;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Crimson Pro', 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(42,38,34,0.035) 0, transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(42,38,34,0.03) 0, transparent 50%),
+      repeating-linear-gradient(90deg, rgba(42,38,34,0.015) 0 1px, transparent 1px 90px);
+  }
+
+  a{ color: inherit; }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  .wrap--narrow{ max-width: 760px; }
+
+  h1,h2,h3,.eyebrow,.nav__link,.btn{
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- header / nav ---------- */
+  header.site{
+    position: sticky; top:0; z-index: 50;
+    background: linear-gradient(var(--bg-deep), rgba(217,214,207,0.94));
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(4px);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 18px 0; }
+  .brand{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Cinzel Decorative', 'Cinzel', serif;
+    font-weight:700; font-size:1.15rem; letter-spacing:0.08em;
+    color: var(--red-deep); text-decoration:none;
+  }
+  .brand small{ font-family:'Cinzel', serif; font-weight:400; font-size:0.6rem; color: var(--ink-soft); letter-spacing:0.15em; }
+  .nav__links{ display:flex; gap: 36px; list-style:none; margin:0; padding:0; }
+  .nav__link{ font-size:0.82rem; text-decoration:none; color:var(--ink); position:relative; padding-bottom:4px; }
+  .nav__link.current{ color: var(--red-deep); }
+  .nav__link::after{ content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background: var(--red); transition: right .25s ease; }
+  .nav__link:hover::after{ right:0; }
+
+  /* ---------- page header ---------- */
+  .page-head{ padding: 72px 0 48px; border-bottom: 1px solid var(--line); }
+  .page-head__eyebrow{
+    display:inline-flex; align-items:center; gap:12px;
+    font-size:0.72rem; color: var(--red-deep); font-weight:600; letter-spacing:0.28em; margin-bottom: 20px;
+  }
+  .page-head__eyebrow::before{ content:""; width: 34px; height:1px; background: var(--red); }
+  .page-head h1{
+    margin: 0 0 14px; font-size: clamp(2.2rem, 4.6vw, 3.2rem); font-weight: 900; color: var(--ink);
+  }
+  .page-head p{ margin:0; max-width: 52ch; color: var(--ink-soft); font-size: 1.05rem; }
+
+  /* ---------- diary list ---------- */
+  .diary{ padding: 56px 0 96px; }
+  .diary__list{ list-style:none; margin:0; padding:0; }
+  .entry{
+    display:grid;
+    grid-template-columns: 190px 1fr;
+    gap: 32px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .entry:first-child{ padding-top: 0; }
+  .entry__date{
+    font-family:'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--red-deep);
+    letter-spacing: 0.08em;
+    padding-top: 3px;
+  }
+  .entry__date .yy{ display:block; font-size:0.68rem; color: var(--ink-soft); letter-spacing:0.14em; margin-top:4px; }
+  .entry__text{ color: var(--ink); font-size: 1.05rem; }
+  .entry__text p{ margin: 0 0 14px; }
+  .entry__text p:last-child{ margin-bottom:0; }
+
+  @media (max-width: 620px){
+    .entry{ grid-template-columns: 1fr; gap: 10px; }
+    .entry__date{ display:flex; align-items:baseline; gap:10px; }
+    .entry__date .yy{ margin-top:0; }
+  }
+
+  /* ---------- footer ---------- */
+  footer.site{ background: var(--ink); color: #cfc9be; padding: 56px 0 28px; font-size: 0.86rem; }
+  footer.site a{ text-decoration:none; }
+  footer.site .cols{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(207,201,190,0.15); }
+  footer.site h4{ font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.15em; color: var(--travertine-light); margin: 0 0 16px; }
+  footer.site p{ color:#a49c8d; line-height:1.7; margin:0; }
+  footer.site ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  footer.site ul a{ color:#cfc9be; }
+  footer.site ul a:hover{ color: var(--travertine-light); }
+  .foot__bottom{ display:flex; justify-content:space-between; align-items:center; padding-top: 24px; flex-wrap:wrap; gap:10px; color:#847c6d; font-size:0.78rem; }
+  .foot__notice{ max-width: 60ch; }
+  @media (max-width: 780px){ footer.site .cols{ grid-template-columns: 1fr; gap:32px; } }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">SPQR <small>IMPERIVM ROMANVM</small></a>
+    <ul class="nav__links">
+      <li><a class="nav__link" href="index.html">index</a></li>
+      <li><a class="nav__link current" href="blog.html">blog</a></li>
+      <li><a class="nav__link" href="gallery.html">gallery</a></li>
+      <li><a class="nav__link" href="about.html">about</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <p class="page-head__eyebrow">DIARIVM</p>
+      <h1>Blog</h1>
+      <p>読んだ本や調べたことを、その日の日付だけで綴っていく学習日記です。</p>
+    </div>
+  </div>
+
+  <section class="diary">
+    <div class="wrap wrap--narrow">
+      <ul class="diary__list">
+
+        <li class="entry">
+          <p class="entry__date">08.11<span class="yy">2026</span></p>
+          <div class="entry__text">
+            <p>コロッセオの建設年代を改めて調べる。ウェスパシアヌス帝の着工からティトゥス帝の完成まで、わずか十年足らずというのはやはり驚異的だと思う。奴隷労働と資材調達の規模を考えると、当時の動員力の凄まじさを感じる。</p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <p class="entry__date">08.06<span class="yy">2026</span></p>
+          <div class="entry__text">
+            <p>ポエニ戦争、特に第二次のハンニバルのアルプス越えを読み返す。地図で経路を辿ると、無謀としか言いようがない選択に見えるのに、それをやり切ってしまう胆力に毎回圧倒される。カルタゴ側の史料が少ないのが惜しい。</p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <p class="entry__date">07.29<span class="yy">2026</span></p>
+          <div class="entry__text">
+            <p>アウグストゥスの「元首政」という統治の建前について整理。共和政の形式を残しながら実質的な権力を一手に握る手際の良さに、政治家としての化け物じみたセンスを感じる。次はティベリウスとの統治スタイルの違いを見ていきたい。</p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <p class="entry__date">07.21<span class="yy">2026</span></p>
+          <div class="entry__text">
+            <p>サイト作り開始。まずはトップページから。配色はコロッセオの石灰岩のような黄みがかった灰色をメインに、SPQRの旗を思わせる赤をアクセントに据えることにした。</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>IMPERIVM ROMANVM</h4>
+        <p>ローマ帝国史を学ぶ個人サイトです。誤りに気づかれた際はお気軽にご連絡ください。<br>
+        当サイトのコンテンツはAIモデルの学習データとしての利用を禁じます。</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Index</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Azalea Creative Room</h4>
+        <ul>
+          <li><a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Hub / Links</a></li>
+          <li><a href="https://formspree.io/f/maqvpvoz" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <p class="foot__notice">© Azalea Creative Room. This is a fan-made study site created for personal, non-commercial purposes.</p>
+      <p>SPQR</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
