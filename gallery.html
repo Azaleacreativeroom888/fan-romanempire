@@ -143,6 +143,40 @@
   @media (max-width: 860px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 520px){ .grid{ grid-template-columns: 1fr; } }
 
+  /* ---------- feature link box (report1) ---------- */
+  .feature{
+    display:grid; grid-template-columns: auto 1fr auto; align-items:center; gap: 28px;
+    margin-bottom: 40px;
+    padding: 30px 34px;
+    background: var(--red-deep);
+    color: var(--paper);
+    text-decoration:none;
+    border: 1px solid var(--red-deep);
+    position:relative;
+    overflow:hidden;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .feature::after{
+    content:""; position:absolute; right:-40px; top:-40px; width:160px; height:160px; border-radius:50%;
+    border: 1px solid rgba(231,228,220,0.18);
+    box-shadow: 0 0 0 22px rgba(231,228,220,0.05);
+    pointer-events:none;
+  }
+  .feature:hover{ background: var(--red); transform: translateY(-2px); }
+  .feature__mark{
+    width:56px; height:56px; border-radius:50%;
+    background: var(--travertine-light); color: var(--red-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .feature__mark svg{ width:30px; height:30px; }
+  .feature__eyebrow{ font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.22em; opacity:0.8; margin:0 0 4px; }
+  .feature__title{ font-family:'Cinzel',serif; font-size:1.4rem; font-weight:600; margin:0 0 4px; letter-spacing:0.04em; }
+  .feature__desc{ margin:0; font-size:0.95rem; opacity:0.88; }
+  .feature__go{ font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.14em; position:relative; z-index:1; }
+  @media (max-width: 620px){
+    .feature{ grid-template-columns: 1fr; gap:14px; padding:26px 24px; }
+  }
+
   .gallery__note{
     margin-top: 44px;
     padding: 22px 26px;
@@ -202,6 +236,16 @@
 
   <section class="gallery">
     <div class="wrap">
+      <a class="feature" href="report1.html">
+        <span class="feature__mark" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50,20 C30,30 22,55 32,75 C38,85 48,88 50,88" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M50,20 C70,30 78,55 68,75 C62,85 52,88 50,88" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></span>
+        <span>
+          <p class="feature__eyebrow">REPORT 01</p>
+          <h3 class="feature__title">ローマ帝国の人物</h3>
+          <p class="feature__desc">皇帝・将軍・政治家など、ローマ史を動かした人々をまとめた特集ページです。</p>
+        </span>
+        <span class="feature__go">READ →</span>
+      </a>
+
       <div class="grid">
 
         <figure class="tile">
