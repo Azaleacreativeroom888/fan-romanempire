@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ローマ帝国の人物 ― IMPERIVM ROMANVM</title>
+<meta name="description" content="共和政から帝政末期まで、ローマ史を動かした人物たちの一覧。名前・没年・解説。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cinzel+Decorative:wght@700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #d9d6cf;
+    --bg-deep: #cac6bd;
+    --travertine: #b9a988;
+    --travertine-dark: #9c8c6c;
+    --travertine-light: #d6c9a8;
+    --red: #9c2b26;
+    --red-deep: #7a1f1c;
+    --ink: #2a2622;
+    --ink-soft: #4a443c;
+    --line: rgba(42,38,34,0.18);
+    --paper: #e7e4dc;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Crimson Pro', 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(42,38,34,0.035) 0, transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(42,38,34,0.03) 0, transparent 50%),
+      repeating-linear-gradient(90deg, rgba(42,38,34,0.015) 0 1px, transparent 1px 90px);
+  }
+
+  a{ color: inherit; }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  h1,h2,h3,.eyebrow,.nav__link,.btn{
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- header / nav ---------- */
+  header.site{
+    position: sticky; top:0; z-index: 50;
+    background: linear-gradient(var(--bg-deep), rgba(217,214,207,0.94));
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(4px);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 18px 0; }
+  .brand{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Cinzel Decorative', 'Cinzel', serif;
+    font-weight:700; font-size:1.15rem; letter-spacing:0.08em;
+    color: var(--red-deep); text-decoration:none;
+  }
+  .brand small{ font-family:'Cinzel', serif; font-weight:400; font-size:0.6rem; color: var(--ink-soft); letter-spacing:0.15em; }
+  .nav__links{ display:flex; gap: 36px; list-style:none; margin:0; padding:0; }
+  .nav__link{ font-size:0.82rem; text-decoration:none; color:var(--ink); position:relative; padding-bottom:4px; }
+  .nav__link::after{ content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background: var(--red); transition: right .25s ease; }
+  .nav__link:hover::after{ right:0; }
+
+  /* ---------- page header ---------- */
+  .page-head{ padding: 72px 0 48px; border-bottom: 1px solid var(--line); }
+  .crumb{
+    font-family:'Cinzel', serif; font-size:0.72rem; letter-spacing:0.14em;
+    color: var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom: 26px;
+  }
+  .crumb:hover{ color: var(--red-deep); }
+  .page-head__eyebrow{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Cinzel', serif;
+    font-size:0.72rem; color: var(--red-deep); font-weight:600; letter-spacing:0.28em; margin-bottom: 20px;
+  }
+  .page-head__eyebrow::before{ content:""; width: 34px; height:1px; background: var(--red); }
+  .page-head h1{ margin: 0 0 14px; font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 900; color: var(--ink); }
+  .page-head p{ margin:0; max-width: 56ch; color: var(--ink-soft); font-size: 1.05rem; }
+
+  /* ---------- people list ---------- */
+  .people{ padding: 56px 0 100px; }
+  .people__grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .person{
+    background: var(--paper);
+    padding: 26px 26px 30px;
+    display:flex; flex-direction:column; gap: 14px;
+    position:relative;
+    transition: background .2s ease;
+  }
+  .person:hover{ background: #f0ede4; }
+  .person::before{
+    content:""; position:absolute; left:0; top:0; width:4px; height:100%;
+    background: var(--travertine);
+  }
+  .person:hover::before{ background: var(--red); }
+
+  .person__name{
+    margin:0;
+    font-family: 'Crimson Pro', 'EB Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; line-height:1.4;
+    color: var(--ink);
+  }
+  .person__year{
+    align-self:flex-start;
+    font-family:'Cinzel', serif;
+    font-size:0.72rem; letter-spacing:0.1em;
+    color: var(--paper); background: var(--red-deep);
+    padding: 4px 12px;
+  }
+  .person__desc{
+    margin:0; font-size:0.95rem; color: var(--ink-soft); line-height:1.8;
+  }
+
+  .back{ margin-top: 56px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.78rem; text-decoration:none;
+    padding: 14px 26px; border: 1px solid var(--ink); color: var(--ink);
+    transition: all .2s ease;
+  }
+  .btn:hover{ background: var(--ink); color: var(--paper); }
+
+  /* ---------- footer ---------- */
+  footer.site{ background: var(--ink); color: #cfc9be; padding: 56px 0 28px; font-size: 0.86rem; }
+  footer.site a{ text-decoration:none; }
+  footer.site .cols{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(207,201,190,0.15); }
+  footer.site h4{ font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.15em; color: var(--travertine-light); margin: 0 0 16px; }
+  footer.site p{ color:#a49c8d; line-height:1.7; margin:0; }
+  footer.site ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  footer.site ul a{ color:#cfc9be; }
+  footer.site ul a:hover{ color: var(--travertine-light); }
+  .foot__bottom{ display:flex; justify-content:space-between; align-items:center; padding-top: 24px; flex-wrap:wrap; gap:10px; color:#847c6d; font-size:0.78rem; }
+  .foot__notice{ max-width: 60ch; }
+  @media (max-width: 780px){ footer.site .cols{ grid-template-columns: 1fr; gap:32px; } }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">SPQR <small>IMPERIVM ROMANVM</small></a>
+    <ul class="nav__links">
+      <li><a class="nav__link" href="index.html">index</a></li>
+      <li><a class="nav__link" href="blog.html">blog</a></li>
+      <li><a class="nav__link" href="gallery.html">gallery</a></li>
+      <li><a class="nav__link" href="about.html">about</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="wrap">
+      <a class="crumb" href="gallery.html">← GALLERY</a>
+      <p class="page-head__eyebrow">REPORT 01 ・ PERSONAE</p>
+      <h1>ローマ帝国の人物</h1>
+      <p>共和政から帝政末期まで、ローマ史を動かした人物たちを没年順にまとめました。</p>
+    </div>
+  </div>
+
+  <section class="people">
+    <div class="wrap">
+      <div class="people__grid">
+
+        <article class="person">
+          <h2 class="person__name">スキピオ・アフリカヌス</h2>
+          <span class="person__year">没 前183年</span>
+          <p class="person__desc">第二次ポエニ戦争でザマの戦いに勝利し、ハンニバルを破ってローマを勝利に導いた将軍。のちに政争に敗れ、晩年は隠棲した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ティベリウス・グラックス</h2>
+          <span class="person__year">没 前133年</span>
+          <p class="person__desc">護民官として土地改革を推し進めた政治家。有力者の反発を招き、元老院派との衝突の中で殺害された。「内乱の世紀」の発端とされる。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ガイウス・マリウス</h2>
+          <span class="person__year">没 前86年</span>
+          <p class="person__desc">志願兵を募る軍制改革を行い、軍隊を職業軍人化した将軍。7度の執政官を務めたが、のちにスッラと激しく対立した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ルキウス・コルネリウス・スッラ</h2>
+          <span class="person__year">没 前78年</span>
+          <p class="person__desc">マリウスと争って権力を握り、独裁官に就任した。元老院の権威を回復させる改革を行い、その後に自ら引退した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">グナエウス・ポンペイウス</h2>
+          <span class="person__year">没 前48年</span>
+          <p class="person__desc">東方遠征で名声を築いた将軍で、第一回三頭政治の一角。のちにカエサルと対立し、ファルサルスの戦いで敗れてエジプトで殺された。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ガイウス・ユリウス・カエサル</h2>
+          <span class="person__year">没 前44年</span>
+          <p class="person__desc">ガリア征服で名を上げ、内戦に勝利して終身独裁官となった。暦の改革でも知られ、共和政の守護を掲げる者たちによって暗殺された。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">マルクス・トゥッリウス・キケロ</h2>
+          <span class="person__year">没 前43年</span>
+          <p class="person__desc">雄弁で知られる政治家・弁論家・哲学者。共和政の擁護を訴えたが、カエサル死後の混乱の中でアントニウスの追っ手に殺された。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">アウグストゥス</h2>
+          <span class="person__year">没 後14年</span>
+          <p class="person__desc">カエサルの養子オクタウィアヌス。内乱を収めて初代皇帝となり、共和政の形式を保ちながら帝政を築いた。「ローマの平和」の基礎を作った。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ネロ</h2>
+          <span class="person__year">没 後68年</span>
+          <p class="person__desc">ユリウス・クラウディウス朝最後の皇帝。ローマの大火やキリスト教徒の迫害でも知られ、反乱の中で元老院に国家の敵とされ、自害した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ウェスパシアヌス</h2>
+          <span class="person__year">没 後79年</span>
+          <p class="person__desc">内乱を制して即位し、フラウィウス朝を開いた皇帝。財政を立て直し、コロッセオの建設に着手した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">トラヤヌス</h2>
+          <span class="person__year">没 後117年</span>
+          <p class="person__desc">五賢帝の一人で、属州出身として初めての皇帝。ダキアやパルティアへの遠征を行い、帝国は最大版図に達した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ハドリアヌス</h2>
+          <span class="person__year">没 後138年</span>
+          <p class="person__desc">五賢帝の一人。拡大より防衛を重視し、ブリタンニアに長城を築いた。帝国各地を巡幸し、パンテオンの再建でも知られる。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">マルクス・アウレリウス</h2>
+          <span class="person__year">没 後180年</span>
+          <p class="person__desc">五賢帝の最後の皇帝で、ストア派の哲学者としても名高い。北方の蛮族との戦いの陣中で『自省録』を書き残した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">ディオクレティアヌス</h2>
+          <span class="person__year">没 後311年頃</span>
+          <p class="person__desc">3世紀の混乱を収めた皇帝。帝国を複数の皇帝で分担して統治する四分統治を始め、専制君主政の基礎を固めた。のち自ら退位した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">コンスタンティヌス1世</h2>
+          <span class="person__year">没 後337年</span>
+          <p class="person__desc">内戦に勝って帝国を再統一した皇帝。キリスト教を公認し、コンスタンティノープルを新たな都として建設した。</p>
+        </article>
+
+        <article class="person">
+          <h2 class="person__name">テオドシウス1世</h2>
+          <span class="person__year">没 後395年</span>
+          <p class="person__desc">キリスト教を国教とした皇帝で、最後に帝国全土を統治した。死後、帝国は東西に分けられ、再び統一されることはなかった。</p>
+        </article>
+
+      </div>
+
+      <div class="back">
+        <a class="btn" href="gallery.html">← ギャラリーへ戻る</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>IMPERIVM ROMANVM</h4>
+        <p>ローマ帝国史を学ぶ個人サイトです。誤りに気づかれた際はお気軽にご連絡ください。<br>
+        当サイトのコンテンツはAIモデルの学習データとしての利用を禁じます。</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Index</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Azalea Creative Room</h4>
+        <ul>
+          <li><a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Hub / Links</a></li>
+          <li><a href="https://formspree.io/f/maqvpvoz" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <p class="foot__notice">© Azalea Creative Room. This is a fan-made study site created for personal, non-commercial purposes.</p>
+      <p>SPQR</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
